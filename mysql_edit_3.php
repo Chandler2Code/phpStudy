@@ -11,7 +11,7 @@ if(isset($_POST["ok"])){
     $query_string_new="select count(*) new from stuinfo where name='$name'";
     $old=mysqli_query($link,$query_string_old);
     $new=mysqli_query($link,$query_string_new);
-    $row_new=mysqli_fetch_assoc($new);
+    mysqli_query($link,$query_string);
     $row_old=mysqli_fetch_assoc($old);
     $counter_new=$row_new['new'];
     $counter_old=$row_old['old'];
@@ -23,6 +23,7 @@ if(isset($_POST["ok"])){
         if( $counter_new == 0){
             $query_string="insert into stuinfo(id,name,score) VALUES (' $new_id','$name','$score')";
             mysqli_query($link,$query_string);
+            header("location:mysql_page_1.php");
         }else{
             echo "姓名已经存在！请重新填写";
         }
@@ -33,6 +34,7 @@ if(isset($_POST["ok"])){
        if($counter_new==0 and $counter_old>=1){
           $query_string="update  stuinfo set name='$name',score='$score' where id='$id'";
           mysqli_query($link,$query_string);
+          header("location:mysql_page_1.php");
        }
        else{
         echo "名字修改失败，该名字已经被注册";
