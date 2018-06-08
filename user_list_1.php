@@ -2,10 +2,12 @@
 <?php
 //session操作
 session_start();
-if(isset($_SESSION['user'])){
+if(isset($_SESSION['name'])){
    echo "helloword";
+  echo "<br>";
+   echo "欢迎".$_SESSION['name']."登录";
 }else{
     echo "无权访问";
-    echo "<a href='login.php'>login</a>";
+    echo "<a href='login_1.php'>login</a>";
 }
 
